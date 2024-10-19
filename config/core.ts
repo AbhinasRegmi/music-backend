@@ -22,11 +22,34 @@ export const core_config = {
             return secret;
         }
     )(),
-    auth: (
+    auth_google: (
         () => {
-            return getEnvVariables("GOOGLE_ID", "GOOGLE_SECRET", "GITHUB_ID", "GITHUB_SECRET");
+            return getEnvVariables(
+                {
+                    name: "GOOGLE_ID",
+                    label: "id",
+                },
+                {
+                    name: "GOOGLE_SECRET",
+                    label: "secret",
+                },
+            );
         }
-    )(),
+    ),
+    auth_github: (
+        () => {
+            return getEnvVariables(
+                {
+                    name: "GITHUB_ID",
+                    label: "id"
+                },
+                {
+                    name: "GITHUB_SECRET",
+                    label: "secret",
+                },
+            );
+        }
+    ),
     is_production: (
         () => {
             const value = process.env.PRODUCTION ?? 'false';
